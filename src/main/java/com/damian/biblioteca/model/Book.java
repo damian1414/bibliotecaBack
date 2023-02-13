@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,11 +27,12 @@ public class Book {
 	@Column(name = "id_book")
 	protected Integer id;
 	
-	@Column(name = "name")
-	protected String name;
+	@Column(name = "title")
+	protected String title;
 	
 	@JoinColumn(name = "id_autor", referencedColumnName = "id_autor")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Autor idAutor;
 
 
